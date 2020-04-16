@@ -24,7 +24,7 @@ score = 0
 # On Codey start
 @event.start
 def on_start():
-    # Restart the game each time the gameOVer flag set to 0
+    # Restart the game each time the gameOver flag set to 0
     while(1==1):
         if (gameOver == 0):
             start_game()

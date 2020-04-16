@@ -8,7 +8,7 @@ x = 8
 y = 4
 # Target X position
 tX = 0
-# Target X position
+# Target Y position
 tY = 0
 # Snake move direction (0-3)
 direction = 1
@@ -40,12 +40,12 @@ def start_game():
     gameOver = 0
     turn = 0
     speed = 1
-    # Set random target
-    setRandomTarget()
     # Add 3 points to snake
     addPoint(x-2,y)
     addPoint(x-1,y)
     addPoint(x,y)
+    # Set random target
+    setRandomTarget()
     # Save initial snake length
     initialLen = len(snake)
     # Repeat until gameOver flag is not 0
