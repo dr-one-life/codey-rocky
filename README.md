@@ -4,8 +4,8 @@
 ***Please note: the files only contain Python scripts, no Scratch blocks!***
 
 [Tetris.mblock](/Tetris.mblock) is a minified version of the old Tetris game.
-Use the A and B buttons to move the figure and the C button to rotate it or to restart the game.
-In addition you can tilt Codey left and right to rotate the figure.
+Use the A and B buttons to move the block and the C button to rotate it or to restart the game.
+You can also tilt Codey left and right to rotate the block.
 
 [Snake.mblock](/Snake.mblock) is the good old Snake game.
 Use the A and B buttons to change the snake direction and the C button to stop/restart the game.
