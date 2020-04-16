@@ -27,6 +27,48 @@ def on_start():
         if (gameOver == 0):
             start_game()
 
+# On A button pressed
+@event.button_a_pressed
+def on_button_a_pressed():
+    global direction, turn
+    # If the turn is not completed yet
+    if turn != 0:
+        # Ignore
+        return
+    # Start turn
+    turn = 1
+    # Change direction
+    if direction == 3:
+        direction = 0
+    else:
+        direction += 1
+
+# On B button pressed
+@event.button_b_pressed
+def on_button_b_pressed():
+    global direction, turn
+    # If the turn is not completed yet
+    if turn != 0:
+        # Ignore
+        return
+    # Start turn
+    turn = 1
+    # Change direction
+    if direction == 0:
+        direction = 3
+    else:
+        direction -= 1
+    
+# On C button pressed
+@event.button_c_pressed
+def on_button_c_pressed():
+    global gameOver
+    # Stop or restart the game with gameOver flag
+    if (gameOver == 0):
+        gameOver = 1
+    else:
+        gameOver = 0
+
 # Main game loop
 def start_game():
     global snake, x, y, tY, tX, direction, gameOver, turn, speed
@@ -88,63 +130,25 @@ def start_game():
     # Show the score
     codey.display.show(len(snake)-initialLen)
 
-
-# On A button pressed
-@event.button_a_pressed
-def on_button_a_pressed():
-    global direction, turn
-    # If the turn is not completed yet
-    if turn != 0:
-        # Ignore
-        return
-    # Start turn
-    turn = 1
-    # Change direction
-    if direction == 3:
-        direction = 0
-    else:
-        direction += 1
-
-# On B button pressed
-@event.button_b_pressed
-def on_button_b_pressed():
-    global direction, turn
-    # If the turn is not completed yet
-    if turn != 0:
-        # Ignore
-        return
-    # Start turn
-    turn = 1
-    # Change direction
-    if direction == 0:
-        direction = 3
-    else:
-        direction -= 1
-    
-# On C button pressed
-@event.button_c_pressed
-def on_button_c_pressed():
-    global gameOver
-    # Stop or restart the game with gameOver flag
-    if (gameOver == 0):
-        gameOver = 1
-    else:
-        gameOver = 0
-
 # Set new random target
 def setRandomTarget():
     global snake, gameOver, tY, tX
-    i = 0
-    # Try up to 100 times to generate target position outside of the snake
-    while i < 100:
-        i += 1
-        x = random.randint(0, 15)
-        y = random.randint(0, 7)
-        if (x,y) not in snake:
-            tX = x
-            tY = y
-            return
-    gameOver = 1
+    # Generate list of available display points
+    points = []
+    for x in range(16):
+        for y in range(8):
+            if (x,y) not in snake:
+                points.append((x,y))
+    # More than 2 empty points available?
+    if len(points) < 3:
+        gameOver = 1
+        return
+    # Take random point from the list
+    ind = random.randint(0, len(points)-1)
+    elm = points[ind]
+    # Set target position
+    tX = elm[0]
+    tY = elm[1]
 
 # Add new point to the snake
 def addPoint(x, y):
