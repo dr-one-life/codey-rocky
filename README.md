@@ -1,5 +1,5 @@
 # codey-rocky
-Codey Rocky python scripts
+[Codey Rocky](https://www.makeblock.com/steam-kits/codey-rocky) python scripts
 
 ***Please note: the files contain Python scripts only, no Scratch blocks!***
 
