@@ -38,11 +38,11 @@ def on_button_a_pressed():
     # Start turn
     turn = 1
     # Change direction
-    if direction == 3:
-        direction = 0
+    if direction == 0:
+        direction = 3
     else:
-        direction += 1
-
+        direction -= 1
+    
 # On B button pressed
 @event.button_b_pressed
 def on_button_b_pressed():
@@ -54,11 +54,11 @@ def on_button_b_pressed():
     # Start turn
     turn = 1
     # Change direction
-    if direction == 0:
-        direction = 3
+    if direction == 3:
+        direction = 0
     else:
-        direction -= 1
-    
+        direction += 1
+
 # On C button pressed
 @event.button_c_pressed
 def on_button_c_pressed():
@@ -180,7 +180,7 @@ def getImage():
         # Calculate binary representation of the column
         for y in range(8):
             if (matrix[x][y] == "1"):
-                col += 2**y
+                col += 2**(7-y)
         # Convert binary number into hexadecimal number and add it to the resulting line
         result += bin2hex(col)
     return result
