@@ -5,9 +5,13 @@ import ujson
 # Settings
 wifi_name = 'yournet'
 wifi_password = 'yourpwd'
-request_url = 'http://api.openweathermap.org/data/2.5/onecall?lat=50.05&lon=7.07&exclude=hourly&units=metric&appid=your_api_key'
+api_key = 'yourapikey'
+lat = 50.05
+lon = 7.07
 
 # Initialize variables
+# - OpenWeatherMap REST API URL
+request_url = 'http://api.openweathermap.org/data/2.5/onecall?lat=' + str(lat) + '&lon=' + str(lon) + '&exclude=hourly&units=metric&appid=' + api_key
 # - Weather JSON
 weather = ''
 # - Selected day
@@ -70,14 +74,8 @@ def show_day():
     codey.led.off()
     src = ''
     if weather != '':
-        # Today
-        if day == 0:
-            src = weather['current']
-            temp_val = src['temp']
-        # Forecast
-        else:
-            src = weather['daily'][day-1]
-            temp_val = src['temp']['day']
+        # Data source
+        src = weather['daily'][day]
         # Show weather picture
         if w_mode == 1:
             bild = src['weather'][0]['icon'][:2]
@@ -107,6 +105,7 @@ def show_day():
                 codey.display.show_image("00444454555515959191929292100000")
         # Show temperature
         else:
+            temp_val = src['temp']['day']
             if temp_val >= 0:
                 codey.display.show("+" + str(int(temp_val)))
             else:
